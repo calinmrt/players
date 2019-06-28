@@ -1,11 +1,5 @@
 package com.sda.playermanager;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,10 +9,9 @@ import com.sda.playermanager.dao.IPlayerDao;
 import com.sda.playermanager.dao.JdbcPlayerDao;
 import com.sda.playermanager.domain.Player;
 
-/**
- * Hello world!
- *
- */
+import lombok.ToString;
+
+
 public class App 
 {
 	
@@ -31,7 +24,8 @@ public class App
     	}
     	        
         IPlayerDao playerDao = new JdbcPlayerDao();
-        // List<Player> allPlayers = playerDao.getAllPlayers();
+        playerDao.getAllPlayers();
+       
         Player player = playerDao.getPlayer(2);
         
         log.info("Player 2: " + player);
@@ -39,6 +33,16 @@ public class App
         player = playerDao.getPlayer(10);
  
         log.info("Player 10: " + player);
+        
+        String nameToSearch="marta";
+        List<Player> list=playerDao.getPlayersByName(nameToSearch);
+        for (Player p : list) {
+			log.info(p);
+		}
+        
+        playerDao.deletePlayer(3);
+        
+        
 
         if (log.isDebugEnabled()) {
         	log.debug("main(): a iesit !!!:");

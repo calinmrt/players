@@ -130,3 +130,38 @@ DEBUG | 2019-06-23 15:29:08 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:43) -
 DEBUG | 2019-06-23 15:29:08 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:108) - getPlayer(): OUT:
 INFO  | 2019-06-23 15:29:08 | [main] playermanager.App (App.java:41) - Player 10: null
 DEBUG | 2019-06-23 15:29:08 | [main] playermanager.App (App.java:44) - main(): a iesit !!!:
+DEBUG | 2019-06-28 13:16:45 | [main] playermanager.App (App.java:23) - main(): a intrat in metoda:
+DEBUG | 2019-06-28 13:16:45 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:61) - getAllPlayers(): IN:
+DEBUG | 2019-06-28 13:16:45 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:31) - getConnection(): IN
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:43) - getConnection(): OUT:com.mysql.cj.jdbc.ConnectionImpl@776b83cc
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:74) - Player: Player [id=1, accountName=calin@haha, firstName=marta, lastName=calin, birthDate=Sun Jan 23 07:00:00 EET 1983]
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:74) - Player: Player [id=2, accountName=vasile@haha, firstName=valahu, lastName=vasile, birthDate=Fri Dec 20 07:00:00 EET 1985]
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:74) - Player: Player [id=4, accountName=ana@haha, firstName=blandiana, lastName=ana, birthDate=Tue Jul 15 07:00:00 EEST 1980]
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:74) - Player: Player [id=5, accountName=ramona@haha, firstName=marta, lastName=ramona, birthDate=Wed Jan 18 07:00:00 EET 1984]
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:74) - Player: Player [id=6, accountName=ion@haha, firstName=popescu, lastName=ion, birthDate=Wed Jan 18 07:00:00 EET 1984]
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:81) - getAllPlayers(): OUT:
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:88) - getPlayer(): IN:
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:31) - getConnection(): IN
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:43) - getConnection(): OUT:com.mysql.cj.jdbc.ConnectionImpl@776b83cc
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:101) - Player: Player [id=2, accountName=vasile@haha, firstName=valahu, lastName=vasile, birthDate=Fri Dec 20 07:00:00 EET 1985]
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:108) - getPlayer(): OUT:
+INFO  | 2019-06-28 13:16:46 | [main] playermanager.App (App.java:31) - Player 2: Player [id=2, accountName=vasile@haha, firstName=valahu, lastName=vasile, birthDate=Fri Dec 20 07:00:00 EET 1985]
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:88) - getPlayer(): IN:
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:31) - getConnection(): IN
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:43) - getConnection(): OUT:com.mysql.cj.jdbc.ConnectionImpl@776b83cc
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:108) - getPlayer(): OUT:
+INFO  | 2019-06-28 13:16:46 | [main] playermanager.App (App.java:35) - Player 10: null
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:117) - getPlayersByName(): IN:
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:31) - getConnection(): IN
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:43) - getConnection(): OUT:com.mysql.cj.jdbc.ConnectionImpl@776b83cc
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:132) - Player: Player [id=1, accountName=calin@haha, firstName=marta, lastName=calin, birthDate=Sun Jan 23 07:00:00 EET 1983]
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:132) - Player: Player [id=5, accountName=ramona@haha, firstName=marta, lastName=ramona, birthDate=Wed Jan 18 07:00:00 EET 1984]
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:140) - getPlayersByName(): OUT:
+INFO  | 2019-06-28 13:16:46 | [main] playermanager.App (App.java:40) - Player [id=1, accountName=calin@haha, firstName=marta, lastName=calin, birthDate=Sun Jan 23 07:00:00 EET 1983]
+INFO  | 2019-06-28 13:16:46 | [main] playermanager.App (App.java:40) - Player [id=5, accountName=ramona@haha, firstName=marta, lastName=ramona, birthDate=Wed Jan 18 07:00:00 EET 1984]
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:149) - deletePlayer(): IN:
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:31) - getConnection(): IN
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:43) - getConnection(): OUT:com.mysql.cj.jdbc.ConnectionImpl@776b83cc
+INFO  | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:159) - deleted 0 rows
+DEBUG | 2019-06-28 13:16:46 | [main] dao.JdbcPlayerDao (JdbcPlayerDao.java:166) - deletePlayer(): OUT:
+DEBUG | 2019-06-28 13:16:46 | [main] playermanager.App (App.java:48) - main(): a iesit !!!:

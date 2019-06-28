@@ -21,8 +21,8 @@ public class JdbcPlayerDao implements IPlayerDao {
 	private static final Logger log = LogManager.getLogger(JdbcPlayerDao.class);
 
 	private static final String dbUrl = "jdbc:mysql://localhost:3306/players?&serverTimezone=EST5EDT";
-	private static final String dbUser = "appuser";
-	private static final String dbPass = "n3wP4$$";
+	private static final String dbUser = "root"; // "appuser";
+	private static final String dbPass = "root"; // "n3wP4$$";
 
 	private Connection con = null;
 
@@ -30,15 +30,15 @@ public class JdbcPlayerDao implements IPlayerDao {
 		if (log.isDebugEnabled()) {
 			log.debug("getConnection(): IN");
 		}
-		
+
 		if (null == con) {
 			try {
 				con = DriverManager.getConnection(dbUrl, dbUser, dbPass);
 			} catch (SQLException e) {
-				log.error("Exception while parsing players: " + e.getMessage(), e);
+				log.error("Exception while getting connection: " + e.getMessage(), e);
 			}
 		}
-		
+
 		if (log.isDebugEnabled()) {
 			log.debug("getConnection(): OUT:" + con);
 		}
@@ -49,10 +49,11 @@ public class JdbcPlayerDao implements IPlayerDao {
 		if (null != con) {
 			try {
 				con.close();
+				log.debug("connection closed!!!" + con);
 			} catch (SQLException e) {
 				log.error("Exception while closing the connection: " + e.getMessage(), e);
 			}
-		}		
+		}
 	}
 
 	public List<Player> getAllPlayers() {
@@ -61,15 +62,15 @@ public class JdbcPlayerDao implements IPlayerDao {
 		}
 
 		List<Player> result = new ArrayList<>();
-		
-		Connection con = getConnection();
+
+		Connection c = getConnection();
 		try {
-			Statement stm = con.createStatement();
+			Statement stm = c.createStatement();
 			ResultSet rs = stm.executeQuery("select * from players.players");
 			while (rs.next()) {
 				Player player = getPlayerFromRS(rs);
 				result.add(player);
-				
+
 				log.info("Player: " + player);
 			}
 		} catch (SQLException e) {
@@ -77,9 +78,8 @@ public class JdbcPlayerDao implements IPlayerDao {
 		}
 
 		if (log.isDebugEnabled()) {
-			log.debug("parseAllPlayers(): OUT:");
+			log.debug("getAllPlayers(): OUT:");
 		}
-
 		return result;
 	}
 
@@ -89,15 +89,15 @@ public class JdbcPlayerDao implements IPlayerDao {
 		}
 
 		Player result = null;
-		
-		Connection con = getConnection();
+
+		Connection c = getConnection();
 		try {
-			PreparedStatement ps = con.prepareStatement("select * from players.players where id = ?");
+			PreparedStatement ps = c.prepareStatement("select * from players.players where id = ?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				result = getPlayerFromRS(rs);
-				
+
 				log.info("Player: " + result);
 			}
 		} catch (SQLException e) {
@@ -112,13 +112,59 @@ public class JdbcPlayerDao implements IPlayerDao {
 	}
 
 	public List<Player> getPlayersByName(String likeName) {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (log.isDebugEnabled()) {
+			log.debug("getPlayersByName(): IN:");
+		}
+
+		List<Player> result = new ArrayList<>();
+
+		Connection c = getConnection();
+		try {
+			PreparedStatement ps = c.prepareStatement("select * from players.players where first_name = ?");
+			ps.setString(1, likeName);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Player player = getPlayerFromRS(rs);
+				result.add(player);
+
+				log.info("Player: " + player);
+			}
+
+		} catch (SQLException e) {
+			log.error("Exception while parsing players: " + e.getMessage(), e);
+		}
+
+		if (log.isDebugEnabled()) {
+			log.debug("getPlayersByName(): OUT:");
+		}
+
+		return result;
+
 	}
 
 	public void deletePlayer(int id) {
-		// TODO Auto-generated method stub
+		if (log.isDebugEnabled()) {
+			log.debug("deletePlayer(): IN:");
+		}
 
+		//Player result = null;
+
+		Connection c = getConnection();
+		try {
+			PreparedStatement ps = c.prepareStatement("delete from players.players where id = ?");
+			ps.setInt(1, id);
+			int row=ps.executeUpdate();
+			log.info("deleted "+row+" rows");
+			
+		} catch (SQLException e) {
+			log.error("Exception while deleting player: " + e.getMessage(), e);
+		}
+
+		if (log.isDebugEnabled()) {
+			log.debug("deletePlayer(): OUT:");
+		}
 	}
 
 	private Player getPlayerFromRS(ResultSet rs) throws SQLException {
@@ -128,14 +174,9 @@ public class JdbcPlayerDao implements IPlayerDao {
 		String lastName = rs.getString("last_name");
 		Timestamp birthDate = rs.getTimestamp("birth_date");
 
-		Player player = new Player(
-				id,
-				accountName,
-				firstName,
-				lastName,
+		return new Player(id, accountName, firstName, lastName,
 				null == birthDate ? null : new Date(birthDate.getTime()));
-		return player;
+
 	}
 
-	
 }
