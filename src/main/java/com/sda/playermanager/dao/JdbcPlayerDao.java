@@ -121,8 +121,8 @@ public class JdbcPlayerDao implements IPlayerDao {
 
 		Connection c = getConnection();
 		try {
-			PreparedStatement ps = c.prepareStatement("select * from players.players where first_name = ?");
-			ps.setString(1, likeName);
+			PreparedStatement ps = c.prepareStatement("select * from players.players where first_name like ?");
+			ps.setString(1, "%"+likeName+"%");
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {

@@ -34,7 +34,7 @@ public class App
  
         log.info("Player 10: " + player);
         
-        String nameToSearch="marta";
+        String nameToSearch="art";
         List<Player> list=playerDao.getPlayersByName(nameToSearch);
         for (Player p : list) {
 			log.info(p);
